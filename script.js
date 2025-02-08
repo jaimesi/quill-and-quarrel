@@ -17,7 +17,6 @@ const quoteElement = document.getElementById("quote");
 const timerElement = document.getElementById("timer");
 const wpmElement = document.getElementById("wpm");
 const errorsElement = document.getElementById("errors");
-const insultElement = document.getElementById("insult");
 const restartButton = document.getElementById("restart");
 const resultsElement = document.getElementById("results");
 
@@ -34,11 +33,10 @@ function startGame() {
     started = false;
     time = 60;
     updateStats();
-    insultElement.textContent = "";
     resultsElement.textContent = "";
     clearInterval(timer);
     
-    // Set first character as active
+    // Set first character as active with blinking cursor
     quoteElement.children[0].classList.add('active');
 }
 
@@ -70,7 +68,6 @@ function updateTyping() {
             } else {
                 char.classList.add("incorrect");
                 char.classList.remove("correct");
-
                 errors++;
             }
         } else {
@@ -100,7 +97,7 @@ function updateTime() {
     }
 }
 
-function showResultsPopup(completion, correctness, wpm) {
+function showResultsPopup(completion, correctness, wpm, rank) {
     // Check if modal already exists, remove it first
     const existingModal = document.getElementById("results-modal");
     if (existingModal) {
@@ -116,6 +113,7 @@ function showResultsPopup(completion, correctness, wpm) {
             <p>Completion: ${completion}%</p>
             <p>Correctness: ${correctness}%</p>
             <p>WPM: ${wpm}</p>
+            <p>Rank: ${rank}</p>
             <button id="close-modal">Close</button>
         </div>
     `;
@@ -143,7 +141,20 @@ function calculateResults() {
     let correctness = totalTyped > 0 ? (correctTyped / totalTyped) * 100 : 100;
     correctness = Math.min(correctness, 100);
 
-    showResultsPopup(completion.toFixed(2), correctness.toFixed(2), wpm);
+    // Determine rank
+    let rank = "A Mere Knave";
+    if (wpm >= 100) {
+        rank = "The Bard’s Equal!";
+    } else if (wpm >= 60) {
+        rank = "A Noble Scribe";
+    }
+
+    // Demote rank for excessive errors
+    if (errors > totalTyped * 0.2) { // More than 20% error rate
+        rank = "A Mere Knave";
+    }
+
+    showResultsPopup(completion.toFixed(2), correctness.toFixed(2), wpm, rank);
 }
 
 function updateStats() {
