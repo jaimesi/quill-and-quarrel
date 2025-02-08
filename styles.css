@@ -1,0 +1,146 @@
+/* General styling */
+body {
+    font-family: "Barlow", serif;
+    background: url('parchment-texture.jpg') center/cover no-repeat;
+    color: #3b2214;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Game container */
+#game-container {
+    max-width: 700px;
+    margin: auto;
+    background: rgba(255, 245, 230, 0.9);
+    padding: 20px;
+    border: 3px solid #8B4513;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Quote styling */
+#quote-container {
+    font-size: 1.4rem;
+    padding: 15px;
+    border: 2px solid #6b3d1f;
+    border-radius: 5px;
+    background: rgba(255, 235, 205, 0.8);
+    text-align: left;
+    line-height: 1.6;
+}
+
+/* Quote character styling */
+#quote span {
+    font-weight: lighter;
+}
+
+#quote {
+    color: gray;
+}
+
+/* Highlight correct/incorrect letters */
+.correct {
+    color: black;
+}
+
+.incorrect {
+    color: red;
+    text-decoration: underline;
+}
+
+/* Blinking cursor effect */
+.active {
+    border-left: 2px solid black;
+    animation: blink 0.6s infinite;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* Stats display */
+#stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Insult text (Shakespearean insults when user makes errors) */
+#insult {
+    font-style: italic;
+    color: #8B0000;
+    margin-top: 10px;
+}
+
+/* Restart button */
+#restart {
+    background: #8B4513;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#restart:hover {
+    background: #a0522d;
+}
+
+/* Modal Background */
+#results-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+#results-content {
+    background: rgba(255, 245, 230, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 3px solid #8B4513;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+}
+
+/* Close Button */
+#close-modal {
+    background: #8B4513;
+    color: white;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#close-modal:hover {
+    background: #a0522d;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(40px); opacity: 0; }
+}
+
+.falling {
+    position: absolute;
+    color: rgba(255, 0, 0, 0.6);
+    font-size: 1.2rem;
+    pointer-events: none;
+    animation: fall 1s ease-in forwards;
+}
