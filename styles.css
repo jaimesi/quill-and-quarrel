@@ -1,80 +1,98 @@
-/* General styling */
+/* General Styles */
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
     font-family: "Barlow", serif;
-    background: url('parchment-texture.jpg') center/cover no-repeat;
+    background: url('/images/parchment-texture.jpeg') center/cover no-repeat fixed;
     color: #3b2214;
     text-align: center;
-    padding: 20px;
 }
 
-/* Game container */
-#game-container {
-    max-width: 700px;
-    margin: auto;
-    background: rgba(255, 245, 230, 0.9);
-    padding: 20px;
-    border: 3px solid #8B4513;
-    border-radius: 10px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+h1 {
+    font-family: "EB Garamond", serif;
+    font-size: 4rem;
+    margin: 0.3em;
 }
 
-/* Quote styling */
-#quote-container {
-    font-size: 1.4rem;
-    padding: 15px;
-    border: 2px solid #6b3d1f;
-    border-radius: 5px;
-    background: rgba(255, 235, 205, 0.8);
-    text-align: left;
-    line-height: 1.6;
-}
-
-/* Quote character styling */
-#quote span {
-    font-weight: lighter;
-}
-
-#quote {
-    color: gray;
-}
-
-/* Highlight correct/incorrect letters */
-.correct {
-    color: black;
-}
-
-.incorrect {
-    color: red;
-    text-decoration: underline;
-}
-
-/* Blinking cursor effect */
-.active {
-    border-left: 2px solid black;
-    animation: blink 0.6s infinite;
-}
-
-@keyframes blink {
-    50% { border-color: transparent; }
-}
-
-/* Stats display */
-#stats {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 15px;
+p {
     font-size: 1.2rem;
-    font-weight: bold;
-}
-
-/* Insult text (Shakespearean insults when user makes errors) */
-#insult {
     font-style: italic;
-    color: #8B0000;
-    margin-top: 10px;
 }
 
-/* Restart button */
+/* Medieval Button Styles */
+button {
+    background-color: #d2b48c;
+    border: 2px solid #8b4513;
+    border-radius: 10px;
+    padding: 15px 30px;
+    margin: 0.7em;
+    font-size: 1.1rem;
+    font-family: "EB Garamond", serif;
+    color: #3e2c1a;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-color: #b8860b;
+    border-color: #654321;
+    color: white;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
+button:disabled {
+    background-color: #a9a9a9;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Specific Button Styles */
+#difficulty-buttons button {
+    width: 10rem;
+    height: 4rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+#mode-buttons button {
+    width: 10rem;
+    height: 4rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+#mode-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-button {
+    background: transparent;
+    color: #64330f;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border: 2px solid #8b4513;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-button:hover {
+    background: #a0522d;
+    color: white;
+}
+
 #restart {
     background: #8B4513;
     color: white;
@@ -89,6 +107,106 @@ body {
 
 #restart:hover {
     background: #a0522d;
+}
+
+#mode-selection, #difficulty-selection, #game-container {
+    width: 100%;
+    max-width: 44rem;
+    margin: auto; /* Center horizontally */
+}
+
+/* Mode and Difficulty Selection Containers */
+#mode-selection, #difficulty-selection {
+    background: rgba(255, 245, 230, 0.9);
+    padding-top: 2.5em;
+    padding-bottom: 3.5em;
+    border: 3px solid #8B4513;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Game Container */
+#game-container {
+    max-width: 700px;
+    margin: auto;
+    background: rgba(255, 245, 230, 0.9);
+    padding: 20px;
+    border: 3px solid #8B4513;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#progress-bar {
+    width: 100%;
+    height: 10px;
+    background: transparent;
+    border: 2px solid #6b3d1f;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: #8B4513;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+#quote-container {
+    padding: 15px;
+    border: 2px solid #6b3d1f;
+    border-radius: 5px;
+    background: rgba(255, 235, 205, 0.8);
+    text-align: left;
+    line-height: 1.6;
+    max-height: 138px;
+    overflow-y: auto;
+}
+
+#quote span {
+    font-weight: lighter;
+}
+
+#quote div {
+    margin: 0;
+    padding: 0;
+}
+
+#quote {
+    color: gray;
+    margin: 0;
+    padding: 0;
+    font-size: 1.4rem;
+}
+
+.correct {
+    color: black;
+}
+
+.incorrect {
+    color: red;
+    text-decoration: underline;
+}
+
+.active {
+    border-left: 2px solid black;
+    animation: blink 0.6s infinite;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+#stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 /* Modal Background */
@@ -130,17 +248,4 @@ body {
 
 #close-modal:hover {
     background: #a0522d;
-}
-
-@keyframes fall {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(40px); opacity: 0; }
-}
-
-.falling {
-    position: absolute;
-    color: rgba(255, 0, 0, 0.6);
-    font-size: 1.2rem;
-    pointer-events: none;
-    animation: fall 1s ease-in forwards;
 }
